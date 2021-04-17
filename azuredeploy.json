@@ -3,52 +3,52 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "baseName": {
-      "defaultValue": "AzWarrantyUpdater",
+      "defaultValue": "UnlicenseSharedMailboxes",
       "type": "string",
       "metadata": {
         "description": "Name used as base-template to named the resources deployed in Azure."
       }
     },
-    "AutotaskHostName": {
-      "defaultValue": "https://pinotage-api.centrastage.net",
-      "type": "string",
-      "metadata": {
-        "description": "Your current Datto RMM API URL"
-      }
-    },
-    "AutotaskIntCode": {
+    "ApplicationID": {
       "defaultValue": "",
       "type": "string",
       "metadata": {
-        "description": "Your Autotask API integration code"
+        "description": "Your ApplicationID"
       }
     },
-    "AutotaskAPIUsername": {
+    "ApplicationSecret": {
       "defaultValue": "",
       "type": "string",
       "metadata": {
-        "description": "Your Autotask API Username"
+        "description": "Your ApplicationSecret"
       }
     },
-    "AutotaskAPIPassword": {
-      "defaultValue": "",
-      "type": "securestring",
-      "metadata": {
-        "description": "Your Autotask API user Password"
-      }
-    },
-    "DellClientID": {
+    "tenantID": {
       "defaultValue": "",
       "type": "string",
       "metadata": {
-        "description": "Your Dell API client ID. Leave blank if you do not use Dell devices"
+        "description": "Your tenantID"
       }
     },
-    "DellClientSecret": {
+    "RefreshToken": {
       "defaultValue": "",
-      "type": "securestring",
+      "type": "string",
       "metadata": {
-        "description": "Your Dell client secret. Leave blank if you do not use Dell devices"
+        "description": "Your RefreshToken"
+      }
+    },
+    "ExchangeRefreshToken": {
+      "defaultValue": "",
+      "type": "string",
+      "metadata": {
+        "description": "Your ExchangeRefreshToken"
+      }
+    },
+    "UPN": {
+      "defaultValue": "",
+      "type": "string",
+      "metadata": {
+        "description": "The UPN of the global Admin who consented for the tokens"
       }
     },
     "GitHubBranch": {
@@ -102,28 +102,28 @@
               "value": "~3"
             },
             {
-              "name": "AutotaskHostName",
-              "value": "[parameters('AutotaskHostName')]"
+              "name": "tenantID",
+              "value": "[parameters('tenantID')]"
             },
             {
-              "name": "AutotaskIntCode",
-              "value": "[parameters('AutotaskIntCode')]"
+              "name": "ApplicationID",
+              "value": "[parameters('ApplicationID')]"
             },
             {
-              "name": "AutotaskAPIUsername",
-              "value": "[parameters('AutotaskAPIUsername')]"
+              "name": "ApplicationSecret",
+              "value": "[parameters('ApplicationSecret')]"
             },
             {
-              "name": "AutotaskAPIPassword",
-              "value": "[parameters('AutotaskAPIPassword')]"
+              "name": "RefreshToken",
+              "value": "[parameters('RefreshToken')]"
             },
             {
-              "name": "DellClientID",
-              "value": "[parameters('DellClientID')]"
+              "name": "ExchangeRefreshToken",
+              "value": "[parameters('ExchangeRefreshToken')]"
             },
             {
-              "name": "DellClientSecret",
-              "value": "[parameters('DellClientSecret')]"
+              "name": "UPN",
+              "value": "[parameters('UPN')]"
             },
             {
               "name": "FUNCTIONS_WORKER_RUNTIME",
@@ -134,7 +134,7 @@
       },
       "resources": [
         {
-          "apiVersion": "2015-08-01",
+          "apiVersion": "2016-08-01",
           "name": "web",
           "type": "sourcecontrols",
           "dependsOn": [
